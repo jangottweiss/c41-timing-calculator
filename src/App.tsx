@@ -29,8 +29,8 @@ const devTypeNames: string[] = ['Develop Normally', 'Push +1', 'Push +2', 'Push 
 
 function App() {
 
-  const [numOfRollsDeveloped, setNumOfRollsDeveloped] = React.useState(0);
-  const [baseTimeSetting, setBaseTimeSetting] = React.useState("base");
+  const [numOfRollsDeveloped, setNumOfRollsDeveloped] = useState(0);
+  const [baseTimeSetting, setBaseTimeSetting] = useState("base");
 
   function showTiming() {
     // const a: number = devTimesObj[baseTimeSetting]
