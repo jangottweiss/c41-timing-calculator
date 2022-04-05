@@ -27,19 +27,10 @@ const devTypes: string[] = ['base', 'push1', 'push2', 'push3', 'pull1'];
 const devTimes: number[] = [3.5, 4.55, 6.13, 8.75, 2.75];
 const devTypeNames: string[] = ['Develop Normally', 'Push +1', 'Push +2', 'Push +3', 'Pull -1'];
 
-const devTimesObj = {
-  base: 3.5,
-  push1: 4.55,
-  push2: 6.13,
-  push3: 8.75,
-  pull1: 2.75
-}
-
-
 function App() {
 
   const [numOfRollsDeveloped, setNumOfRollsDeveloped] = React.useState(0);
-  const [baseTimeSetting, setBaseTimeSetting] = React.useState<keyof typeof devTimesObj>("base");
+  const [baseTimeSetting, setBaseTimeSetting] = React.useState("base");
 
   function showTiming() {
     // const a: number = devTimesObj[baseTimeSetting]
