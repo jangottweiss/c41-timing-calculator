@@ -5,6 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import Paper from '@mui/material/Paper';
 import NativeSelect from '@mui/material/NativeSelect';
 import TextField from '@mui/material/TextField';
 
@@ -12,7 +13,11 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme();
 
+
 function calculateTime(numOfRollsDeveloped: number, baseTime: number = 3.5, factor: number = 0.02): number {
+  // if(numOfRollsDeveloped === NaN) {
+  //   numOfRollsDeveloped = 3.5;
+  // }
   const newTime = baseTime * (1 + factor * numOfRollsDeveloped);
   return Math.round(newTime * 100) / 100
 }
@@ -33,13 +38,12 @@ function App() {
   const [baseTimeSetting, setBaseTimeSetting] = useState("base");
 
   function showTiming() {
-    // const a: number = devTimesObj[baseTimeSetting]
-
     const devIndex: number = devTypes.indexOf(baseTimeSetting);
     const baseTime: number = devTimes[devIndex];
-    console.log(devIndex)
     const devTime: number = calculateTime(numOfRollsDeveloped, baseTime);
-    return minToString(devTime);
+    const devTimeString: string = minToString(devTime);
+    document.title = `Dev Time: ${devTimeString} min`;
+    return devTimeString;
   }
 
   return (
@@ -74,19 +78,22 @@ function App() {
               <TextField variant="standard" value={numOfRollsDeveloped} type="number" onChange={e => setNumOfRollsDeveloped(parseInt(e.target.value))} /><br />
               rolls with this batch of Chemistry so far. <br />
 
-              <p>
+
+              <Paper elevation={2} className='timingPaper'>
                 The recommended development time is <br />
                 <Typography component="h1" variant="h4">
                   {showTiming()} minutes <br />
                 </Typography>
                 at 39°C (102°F).
-              </p>
+
+              </Paper>
+
             </Box>
 
           </Box>
         </Container>
       </ThemeProvider>
-    </div>
+    </div >
   )
 }
 
